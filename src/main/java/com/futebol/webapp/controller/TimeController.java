@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.futebol.webapp.model.Time;
@@ -19,36 +18,36 @@ import com.futebol.webapp.repository.TimeRepository;
 @RestController
 @RequestMapping("/api/times")
 public class TimeController {
+    
     @Autowired
     private TimeRepository timeRepository;
 
-
+    // Método para buscar todos os times
     @GetMapping
-    public List<Time> getTimes(){
+    public List<Time> getTimes() {
         return timeRepository.findAll();
     }
 
+    // Método para criar um novo time
     @PostMapping
-    public Time criarTime(@ResponseBody Time time){
+    public Time criarTime(@RequestBody Time time) {
         return timeRepository.save(time);
     }
 
+    // Método para atualizar um time existente
     @PutMapping("/{id}")
-    public ResponseEntity<Time> atualizarTime(@PathVariable Long id, @RequestBody Time timeAtualizado){
+    public ResponseEntity<Time> atualizarTime(@PathVariable Long id, @RequestBody Time timeAtualizado) {
         return timeRepository.findById(id)
-        .map(time -> {
-            time.setNome(timeAtualizado.getNome());
-            time.setCidade(timeAtualizado.getCidade());
-            time.setEstadio(timeAtualizado.getEstadio());
-            time.setEscudo(timeAtualizado.getEscudo());
-            time.setEstado(timeAtualizado.getEstado());
-            time.setPais(timeAtualizado.getPais());
-            time.setTelefone(timeAtualizado.getTelefone());
-            Time timeAtualizadoNoBanco = timeRepository.save(time);
-            return ResponseEntity.ok().body(timeAtualizadoNoBanco);
-        }).orElseGet(() -> ResponseEntity.notFound().build());
+            .map(time -> {
+                time.setNome(timeAtualizado.getNome());
+                time.setCidade(timeAtualizado.getCidade());
+                time.setEstadio(timeAtualizado.getEstadio());
+                time.setEscudo(timeAtualizado.getEscudo());
+                time.setEstado(timeAtualizado.getEstado());
+                time.setPais(timeAtualizado.getPais());
+                time.setTelefone(timeAtualizado.getTelefone());
+                Time timeAtualizadoNoBanco = timeRepository.save(time);
+                return ResponseEntity.ok().body(timeAtualizadoNoBanco);
+            }).orElseGet(() -> ResponseEntity.notFound().build());
     }
-
-    
-
 }
