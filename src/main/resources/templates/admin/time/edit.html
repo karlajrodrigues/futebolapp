@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Time</title>
+</head>
+<body>
+    <h1>Formulário de 123</h1>
+    <form action="/salvarTime" method="post" th:object="${time}">
+        <input type="hidden" th:field="*{id}">
+
+        <label for="cidade">Cidade</label>
+        <input type="text" id="cidade" th:field="*{cidade}" placeholder="Informe a descrição">
+        <br>
+        <label for="estado">Estado</label>
+        <input type="text" id="estado" th:field="*{estado}" placeholder="Informe a descrição">
+        <br>
+        <label for="pais">Pais</label>
+        <input type="text" id="pais" th:field="*{pais}" placeholder="Informe a descrição">
+        <br>
+        <label for="cidade">Estadio</label>
+        <input type="text" id="estadio" th:field="*{estadio}" placeholder="Informe a descrição">
+        <br>
+        <label for="nome">Nome do time:</label>
+        <input type="text" id="nome" th:field="*{nome}" placeholder="Informe a descrição">
+        <br>
+        <label for="telefone">Telefone</label>
+        <input type="text" id="telefone" th:field="*{telefone}" placeholder="Informe a descrição">
+        <br>
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>

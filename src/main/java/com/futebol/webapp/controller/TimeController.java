@@ -4,32 +4,44 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.futebol.webapp.model.Time;
 import com.futebol.webapp.repository.TimeRepository;
 
-@RestController
-@RequestMapping("/api/times")
+@Controller
 public class TimeController {
-    
     @Autowired
     private TimeRepository timeRepository;
 
+
+    
+
     // Método para buscar todos os times
-    @GetMapping
-    public List<Time> getTimes() {
-        return timeRepository.findAll();
+    @GetMapping("/listarTimes")
+    public ModelAndView getTimes() {
+        List<Time> listaTimes = timeRepository.findAll();
+        ModelAndView modelAndView = new ModelAndView("/admin/time/times");
+        modelAndView.addObject("times", listaTimes);
+        return modelAndView;
     }
 
+    @GetMapping("/inserirTime")
+    public ModelAndView carregaEditTime() {
+        ModelAndView modelAndView = new ModelAndView("/admin/time/edit");
+        modelAndView.addObject("time", new Time());
+        return modelAndView;
+    }
+    
+   
     // Método para criar um novo time
-    @PostMapping
+    @PostMapping("/salvarTime")
     public Time criarTime(@RequestBody Time time) {
         return timeRepository.save(time);
     }
@@ -42,7 +54,6 @@ public class TimeController {
                 time.setNome(timeAtualizado.getNome());
                 time.setCidade(timeAtualizado.getCidade());
                 time.setEstadio(timeAtualizado.getEstadio());
-                time.setEscudo(timeAtualizado.getEscudo());
                 time.setEstado(timeAtualizado.getEstado());
                 time.setPais(timeAtualizado.getPais());
                 time.setTelefone(timeAtualizado.getTelefone());
@@ -50,4 +61,5 @@ public class TimeController {
                 return ResponseEntity.ok().body(timeAtualizadoNoBanco);
             }).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <head>
+        <meta charset="UTF-8"> 
+        <meta name="author" content="Karla Juliana Rodrigues">
+        <title>Lista de Times</title> <!-- Adicionando título -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"> <!-- Incluindo Bootstrap -->
+  </head>
+  <body>
+    <div> 
+        <th:replace="~{./menu.html}"/> 
+    </div>
+    <div class="container">
+        <h5>Lista de Times</h5>
+
+       
+        <a href="/inserirTime" class="btn btn-primary mb-3">Novo Time</a>
+
+        
+        <!-- Tabela de Times -->
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Estádio</th>
+                    <th>Estado</th>
+                    <th>Cidade</th>
+                    <th>País</th>
+                    <th>Telefone</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="time : ${times}">
+                    <td th:text="${time.id}"></td>
+                    <td th:text="${time.nome}"></td>
+                    <td th:text="${time.estadio}"></td>
+                   
+                    <td th:text="${time.estado}"></td>
+                    <td th:text="${time.cidade}"></td>
+                    <td th:text="${time.pais}"></td>
+                    <td th:text="${time.telefone}"></td>
+                    <td><a th:href="@{/admin/time/editar/{id}(id=${time.id})}">Editar</a></td>
+                    <td><a th:href="@{/admin/time/excluir/{id}(id=${time.id})}" class="text-danger">Excluir</a></td>
+                </tr>
+            </tbody>
+         </table>
+    </div>
+  </body>
+</html>

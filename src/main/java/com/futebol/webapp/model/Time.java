@@ -1,7 +1,5 @@
 package com.futebol.webapp.model;
 
-import java.sql.Blob;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +12,6 @@ public class Time {
     private Long id;
     private String nome;
     private String estadio;
-    private Blob escudo;
     private String estado;
     private String cidade;
     private String pais;
@@ -38,12 +35,7 @@ public class Time {
     public void setEstadio(String estadio) {
         this.estadio = estadio;
     }
-    public Blob getEscudo() {
-        return escudo;
-    }
-    public void setEscudo(Blob escudo) {
-        this.escudo = escudo;
-    }
+    
     public String getEstado() {
         return estado;
     }
