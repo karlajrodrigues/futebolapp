@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 @Entity
 public class Time {
@@ -17,6 +18,10 @@ public class Time {
     private String pais;
     private String telefone;
 
+    @Lob // Usado para armazenar grandes objetos (como imagens)
+    private byte[] escudo;
+    // Getters e Setters
+    
     public Long getId() {
         return id;
     }
@@ -59,6 +64,12 @@ public class Time {
     }
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+    public byte[] getEscudo() {
+        return escudo;
+    }
+    public void setEscudo(byte[] escudo) {
+        this.escudo = escudo;
     }
 
     

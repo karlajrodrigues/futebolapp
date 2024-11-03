@@ -5,27 +5,30 @@
     <title>Formulário de Time</title>
 </head>
 <body>
-    <h1>Formulário de 123</h1>
-    <form action="/salvarTime" method="post" th:object="${time}">
+    <h1>Formulário de Time</h1>
+    <form action="/salvarTime" method="post"  enctype="multipart/form-data">
         <input type="hidden" th:field="*{id}">
 
         <label for="cidade">Cidade</label>
-        <input type="text" id="cidade" th:field="*{cidade}" placeholder="Informe a descrição">
+        <input type="text" id="cidade" th:field="*{cidade}" placeholder="Informe a cidade">
         <br>
         <label for="estado">Estado</label>
-        <input type="text" id="estado" th:field="*{estado}" placeholder="Informe a descrição">
+        <input type="text" id="estado" th:field="*{estado}" placeholder="Informe o estado">
         <br>
-        <label for="pais">Pais</label>
-        <input type="text" id="pais" th:field="*{pais}" placeholder="Informe a descrição">
+        <label for="pais">País</label>
+        <input type="text" id="pais" th:field="*{pais}" placeholder="Informe o país">
         <br>
-        <label for="cidade">Estadio</label>
-        <input type="text" id="estadio" th:field="*{estadio}" placeholder="Informe a descrição">
+        <label for="estadio">Estádio</label>
+        <input type="text" id="estadio" th:field="*{estadio}" placeholder="Informe o estádio">
         <br>
         <label for="nome">Nome do time:</label>
-        <input type="text" id="nome" th:field="*{nome}" placeholder="Informe a descrição">
+        <input type="text" id="nome" th:field="*{nome}" placeholder="Informe o nome do time">
         <br>
         <label for="telefone">Telefone</label>
-        <input type="text" id="telefone" th:field="*{telefone}" placeholder="Informe a descrição">
+        <input type="text" id="telefone" th:field="*{telefone}" placeholder="Informe o telefone">
+        <br>
+        <label for="escudo">Escudo (imagem):</label>
+        <input type="file" id="escudo" name="escudo" required>
         <br>
         <button type="submit">Salvar</button>
     </form>
