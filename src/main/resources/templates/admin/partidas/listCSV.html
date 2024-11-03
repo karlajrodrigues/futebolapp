@@ -1,0 +1,60 @@
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <head>
+        <meta charset="UTF-8"> 
+        <meta name="author" content="Karla Juliana Rodrigues">
+        <title>Lista de Times</title> <!-- Adicionando título -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"> <!-- Incluindo Bootstrap -->
+  </head>
+  <body>
+    <div class="container">
+        <h5>Lista de Partidas CSV</h5>
+        <a href="/importarArena" class="btn btn-primary mb-3">Importar Arena</a>
+        <a href="/importarTime" class="btn btn-primary mb-3">Importar Times</a>
+
+
+        <!-- Tabela de Partidas -->
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Rodada</th>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Mandante</th>
+                    <th>Visitante</th>
+                    <th>tecnico_mandante</th>
+                    <th>tecnico_visitante</th>
+                    <th>vencedor</th>
+                    <th>arena</th>
+                    <th>mandante_placar</th>
+                    <th>visitante_placar</th>
+                    <th>mandante_estado</th>
+                    <th>visitante_estado<th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="partida : ${partidas}">
+<!-- partida_id,rodada,data,hora,mandante,visitante,tecnico_mandante,tecnico_visitante,vencedor,arena,mandante_placar,visitante_placar,mandante_estado,visitante_estado
+-->
+                    <td th:text="${partida.partidaId}"></td>                    
+                    <td th:text="${partida.rodada}"></td>
+                    <td th:text="${partida.data}"></td>
+                    <td th:text="${partida.hora}"></td>
+                    <td th:text="${partida.mandante}"></td>
+                    <td th:text="${partida.visitante}"></td>
+                    <td th:text="${partida.tecnico_mandante}"></td>
+                    <td th:text="${partida.tecnico_visitante}"></td>
+                    <td th:text="${partida.vencedor}"></td>
+                    <td th:text="${partida.arena}"></td>
+                    <td th:text="${partida.mandante_placar}"></td>
+                    <td th:text="${partida.visitante_placar}"></td>
+                    <td th:text="${partida.mandante_estado}"></td>
+                    <td th:text="${partida.visitante_estado}"></td>
+                </tr>
+            </tbody>
+
+
+    </div>
+  </body>
+</html>
+        

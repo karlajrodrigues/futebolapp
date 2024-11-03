@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Partida {
- @Id
+    @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String estadio;
