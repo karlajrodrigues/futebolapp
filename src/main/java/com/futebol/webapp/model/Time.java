@@ -1,18 +1,31 @@
 package com.futebol.webapp.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import lombok.Data;
 
 @Entity
+@Data
 public class Time {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private String estadio;
+    
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="estadio_id") // Jakarta cria na tabela a chave estrangeira estadio _id
+    private Estadio estadio;
+
+    
     private String estado;
     private String cidade;
     private String pais;
@@ -22,56 +35,14 @@ public class Time {
     private byte[] escudo;
     // Getters e Setters
     
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    public String getEstadio() {
-        return estadio;
-    }
-    public void setEstadio(String estadio) {
-        this.estadio = estadio;
-    }
+   @OneToMany(mappedBy= "time", cascade=CascadeType.ALL, orphanRemoval= true)
+   private List<Jogador> jogadores;
     
-    public String getEstado() {
-        return estado;
-    }
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-    public String getCidade() {
-        return cidade;
-    }
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-    public String getPais() {
-        return pais;
-    }
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
-    public String getTelefone() {
-        return telefone;
-    }
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-    public byte[] getEscudo() {
-        return escudo;
-    }
-    public void setEscudo(byte[] escudo) {
-        this.escudo = escudo;
-    }
+   @OneToMany(mappedBy="timeCasa")
+   private List<Partida> partidasCasa;
 
-    
+   @OneToMany(mappedBy="timeVisitante")
+   private List<Partida> partidasVisitante;
+
 
 }
