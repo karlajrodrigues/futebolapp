@@ -15,10 +15,6 @@ import com.futebol.webapp.repository.PartidaRepository;
 import com.futebol.webapp.service.PartidaService;
 
 
-
-
-
-
 @Controller
 public class PartidasController {
 
@@ -65,7 +61,7 @@ public class PartidasController {
 
     @GetMapping("/carregarPartidasCSV")
     public ModelAndView lerPartidasCSV() {
-        String caminhoArquivo = "C:\\Users\\Karla\\Desktop\\Igor\\futebolwebapp\\webapp\\src\\main\\java\\com\\futebol\\webapp\\csv\\partidas.csv";
+        String caminhoArquivo = "C:\\Users\\igorm\\Documents\\futApp\\futebolapp\\src\\main\\java\\com\\futebol\\webapp\\csv\\partidas.csvv";
         List<PartidaCSV> partidas = partidaService.lerPartidasCSV(caminhoArquivo);
         ModelAndView modelAndView = new ModelAndView("/admin/partidas/listCSV");
         modelAndView.addObject("partidas", partidas);

@@ -27,6 +27,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
         .password(PasswordUtil.encoderPassword(usuario.getPassword()))
         .roles("USER")
         .build();
-
+        
     }
 }
